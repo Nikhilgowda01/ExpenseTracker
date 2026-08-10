@@ -1,6 +1,3 @@
-Sure. For your **current Version 1 console Expense Tracker**, use this `README.md`.
-
-````markdown
 # Expense Tracker 💰
 
 A simple **Java console-based Expense Tracker** project.
@@ -35,7 +32,7 @@ ExpenseTracker/
 │   └── ExpenseTracker.java
 │
 └── README.md
-````
+```
 
 ## ✨ Features
 
@@ -43,10 +40,10 @@ ExpenseTracker/
 
 The user can enter:
 
-* Expense title
-* Amount
-* Category
-* Date
+- Expense title
+- Amount
+- Category
+- Date
 
 Example:
 
@@ -90,42 +87,42 @@ The user can exit the application by selecting option `5`.
 
 Current version supports:
 
-* [x] Add Expense
-* [x] View Expense
-* [x] Modify Expense
-* [x] Delete Expense
-* [x] Exit
-* [x] Repeating menu using `while` loop
+- [x] Add Expense
+- [x] View Expense
+- [x] Modify Expense
+- [x] Delete Expense
+- [x] Exit
+- [x] Repeating menu using `while` loop
 
 ## 📚 Java Concepts Used
 
 This project currently uses:
 
-* Variables
-* Data Types
-* Operators
-* `if`
-* `else if`
-* `else`
-* `while` loop
-* `Scanner`
-* Boolean values
-* User input
-* Basic string handling
+- Variables
+- Data Types
+- Operators
+- `if`
+- `else if`
+- `else`
+- `while` loop
+- `Scanner`
+- Boolean values
+- User input
+- Basic String handling
 
 ## ▶️ How to Run
 
-### Step 1: Clone the repository
+### Step 1: Clone the Repository
 
 ```bash
 git clone YOUR_GITHUB_REPOSITORY_URL
 ```
 
-### Step 2: Open the project
+### Step 2: Open the Project
 
 Open the project in VS Code.
 
-### Step 3: Open the source folder
+### Step 3: Open the Source Folder
 
 ```text
 src/ExpenseTracker.java
@@ -166,44 +163,6 @@ Enter your choice:
 
 This project will be improved as I learn more Java.
 
-### Version 2
-
-* Multiple expenses
-* Arrays
-* Better menu system
-* Total expense calculation
-
-### Version 3
-
-* Methods
-* Classes and Objects
-* Better project structure
-
-### Version 4
-
-* `ArrayList`
-* Search expenses
-* Filter expenses
-* Expense categories
-
-### Version 5
-
-* File handling
-* Save expenses permanently
-
-### Version 6
-
-* JDBC
-* MySQL database
-
-### Future
-
-* Spring Boot
-* REST API
-* Web interface
-* User authentication
-* Expense reports
-* Charts and analytics
 
 ## 👨‍💻 Author
 
@@ -214,18 +173,3 @@ This project is created as part of my Java learning journey and will be continuo
 ## 📄 License
 
 This project is for learning and educational purposes.
-
-````
-
-### Your GitHub currently looks like
-
-```text
-ExpenseTracker
-│
-├── src
-│   └── ExpenseTracker.java
-│
-└── README.md
-````
-
-That's perfectly fine for **Version 1**. Don't add Spring Boot, database, or complicated features yet. Build the project step-by-step as you learn Java.
