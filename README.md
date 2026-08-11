@@ -6,14 +6,15 @@ This project is being developed step-by-step while learning Java programming.
 
 ## 📌 Project Overview
 
-The Expense Tracker allows users to manage their expenses through a simple console menu.
+The Expense Tracker allows users to manage multiple expenses through a simple console menu.
 
 Users can:
 
-- Add an expense
-- View an expense
+- Add expenses
+- View all expenses
 - Modify an expense
 - Delete an expense
+- Calculate total expenses
 - Exit the application
 
 ## 🛠️ Technologies Used
@@ -51,48 +52,78 @@ Example:
 Enter expense title: Book
 Enter amount: 300
 Enter category: Study
-Enter date: 10/08/2026
+Enter date: 11/08/2026
 
 Expense added successfully!
 ```
 
-### 2. View Expense
+### 2. View All Expenses
 
-Displays the stored expense:
+The application displays all stored expenses.
+
+Example:
 
 ```text
-========== EXPENSE ==========
+========== ALL EXPENSES ==========
+
+Expense 1
 Title    : Book
-Amount   : Rs.300
+Amount   : Rs.300.0
 Category : Study
-Date     : 10/08/2026
-=============================
+Date     : 11/08/2026
+----------------------------------
+
+Expense 2
+Title    : Lunch
+Amount   : Rs.150.0
+Category : Food
+Date     : 11/08/2026
+----------------------------------
 ```
 
 ### 3. Modify Expense
 
-The user can modify the existing expense details.
+The user can select an expense number and modify its:
+
+- Title
+- Amount
+- Category
+- Date
 
 ### 4. Delete Expense
 
-The user can delete the existing expense.
+The user can select an expense number and delete it.
 
-### 5. Exit
+### 5. Total Expenses
 
-The user can exit the application by selecting option `5`.
+The application calculates and displays the total amount of all stored expenses.
+
+Example:
+
+```text
+==============================
+Total Expenses: Rs.450.0
+==============================
+```
+
+### 6. Exit
+
+The user can exit the application by selecting option `6`.
 
 ## 🎯 Current Version
 
-### Version 1
+### Version 2
 
 Current version supports:
 
-- [x] Add Expense
-- [x] View Expense
-- [x] Modify Expense
-- [x] Delete Expense
-- [x] Exit
+- [x] Add multiple expenses
+- [x] View all expenses
+- [x] Modify expense
+- [x] Delete expense
+- [x] Calculate total expenses
 - [x] Repeating menu using `while` loop
+- [x] Arrays
+- [x] `for` loop
 
 ## 📚 Java Concepts Used
 
@@ -105,10 +136,13 @@ This project currently uses:
 - `else if`
 - `else`
 - `while` loop
+- `for` loop
+- Arrays
+- Array indexing
 - `Scanner`
 - Boolean values
 - User input
-- Basic String handling
+- String handling
 
 ## ▶️ How to Run
 
@@ -151,24 +185,20 @@ java ExpenseTracker
 ==============================
 
 1. Add Expense
-2. View Expense
+2. View All Expenses
 3. Modify Expense
 4. Delete Expense
-5. Exit
+5. Total Expenses
+6. Exit
 
 Enter your choice:
 ```
-
-## 🚀 Future Improvements
-
-This project will be improved as I learn more Java.
-
 
 ## 👨‍💻 Author
 
 **Nikhil**
 
-This project is created as part of my Java learning journey and will be continuously improved as I learn new concepts.
+This project is created as part of my Java learning journey and is being developed step-by-step as I learn new Java concepts.
 
 ## 📄 License
 
