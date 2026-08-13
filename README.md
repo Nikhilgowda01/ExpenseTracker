@@ -2,7 +2,7 @@
 
 A simple **Java console-based Expense Tracker** project.
 
-This project is being developed step-by-step while learning Java programming.
+This project is being developed step-by-step while learning Java programming and applying each new concept to a practical project.
 
 ## 📌 Project Overview
 
@@ -52,7 +52,7 @@ Example:
 Enter expense title: Book
 Enter amount: 300
 Enter category: Study
-Enter date: 11/08/2026
+Enter date: 13/08/2026
 
 Expense added successfully!
 ```
@@ -70,14 +70,14 @@ Expense 1
 Title    : Book
 Amount   : Rs.300.0
 Category : Study
-Date     : 11/08/2026
+Date     : 13/08/2026
 ----------------------------------
 
 Expense 2
 Title    : Lunch
 Amount   : Rs.150.0
 Category : Food
-Date     : 11/08/2026
+Date     : 13/08/2026
 ----------------------------------
 ```
 
@@ -112,7 +112,7 @@ The user can exit the application by selecting option `6`.
 
 ## 🎯 Current Version
 
-### Version 2
+### Version 3
 
 Current version supports:
 
@@ -124,6 +124,8 @@ Current version supports:
 - [x] Repeating menu using `while` loop
 - [x] Arrays
 - [x] `for` loop
+- [x] Methods
+- [x] Separate methods for different operations
 
 ## 📚 Java Concepts Used
 
@@ -139,10 +141,26 @@ This project currently uses:
 - `for` loop
 - Arrays
 - Array indexing
+- Methods
 - `Scanner`
 - Boolean values
 - User input
 - String handling
+
+## 🔧 Methods Used
+
+The program is divided into separate methods to make the code easier to understand and maintain.
+
+```text
+main()
+│
+├── showMenu()
+├── addExpense()
+├── viewExpenses()
+├── modifyExpense()
+├── deleteExpense()
+└── calculateTotal()
+```
 
 ## ▶️ How to Run
 
