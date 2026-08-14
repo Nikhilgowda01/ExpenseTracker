@@ -30,6 +30,7 @@ Users can:
 ExpenseTracker/
 │
 ├── src/
+│   ├── Expense.java
 │   └── ExpenseTracker.java
 │
 └── README.md
@@ -52,7 +53,7 @@ Example:
 Enter expense title: Book
 Enter amount: 300
 Enter category: Study
-Enter date: 13/08/2026
+Enter date: 14/08/2026
 
 Expense added successfully!
 ```
@@ -70,14 +71,14 @@ Expense 1
 Title    : Book
 Amount   : Rs.300.0
 Category : Study
-Date     : 13/08/2026
+Date     : 14/08/2026
 ----------------------------------
 
 Expense 2
 Title    : Lunch
 Amount   : Rs.150.0
 Category : Food
-Date     : 13/08/2026
+Date     : 14/08/2026
 ----------------------------------
 ```
 
@@ -112,7 +113,7 @@ The user can exit the application by selecting option `6`.
 
 ## 🎯 Current Version
 
-### Version 3
+### Version 4
 
 Current version supports:
 
@@ -122,10 +123,14 @@ Current version supports:
 - [x] Delete expense
 - [x] Calculate total expenses
 - [x] Repeating menu using `while` loop
-- [x] Arrays
 - [x] `for` loop
 - [x] Methods
-- [x] Separate methods for different operations
+- [x] Classes
+- [x] Objects
+- [x] Constructor
+- [x] Encapsulation
+- [x] Getters and Setters
+- [x] `ArrayList`
 
 ## 📚 Java Concepts Used
 
@@ -139,28 +144,62 @@ This project currently uses:
 - `else`
 - `while` loop
 - `for` loop
-- Arrays
-- Array indexing
 - Methods
+- Classes
+- Objects
+- Constructors
+- Encapsulation
+- `private` fields
+- Getters and Setters
+- `ArrayList`
+- ArrayList methods
 - `Scanner`
 - Boolean values
 - User input
 - String handling
 
-## 🔧 Methods Used
+## 🧱 Class Structure
 
-The program is divided into separate methods to make the code easier to understand and maintain.
+The project uses two Java classes:
 
 ```text
-main()
+Expense.java
 │
-├── showMenu()
-├── addExpense()
-├── viewExpenses()
-├── modifyExpense()
-├── deleteExpense()
-└── calculateTotal()
+└── Represents one expense
+    ├── title
+    ├── amount
+    ├── category
+    └── date
 ```
+
+```text
+ExpenseTracker.java
+│
+├── Main application
+├── Menu
+├── Add Expense
+├── View Expenses
+├── Modify Expense
+├── Delete Expense
+└── Calculate Total
+```
+
+### Expense Object
+
+Each expense is represented as an `Expense` object.
+
+Example:
+
+```text
+Expense
+│
+├── Title    : Book
+├── Amount   : Rs.300
+├── Category : Study
+└── Date     : 14/08/2026
+```
+
+Multiple `Expense` objects are stored using an `ArrayList`.
 
 ## ▶️ How to Run
 
@@ -177,7 +216,9 @@ Open the project in VS Code.
 ### Step 3: Open the Source Folder
 
 ```text
-src/ExpenseTracker.java
+src/
+├── Expense.java
+└── ExpenseTracker.java
 ```
 
 ### Step 4: Compile
@@ -186,7 +227,7 @@ Open the terminal and run:
 
 ```bash
 cd src
-javac ExpenseTracker.java
+javac Expense.java ExpenseTracker.java
 ```
 
 ### Step 5: Run

@@ -1,17 +1,11 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ExpenseTracker {
 
     static Scanner input = new Scanner(System.in);
 
-    static int maxExpenses = 100;
-
-    static String[] titles = new String[maxExpenses];
-    static double[] amounts = new double[maxExpenses];
-    static String[] categories = new String[maxExpenses];
-    static String[] dates = new String[maxExpenses];
-
-    static int expenseCount = 0;
+    static ArrayList<Expense> expenses = new ArrayList<>();
 
 
     // =========================
@@ -62,7 +56,9 @@ public class ExpenseTracker {
             else if (choice == 6) {
 
                 System.out.println();
-                System.out.println("Thank you for using Expense Tracker!");
+                System.out.println(
+                    "Thank you for using Expense Tracker!"
+                );
 
             }
 
@@ -106,37 +102,35 @@ public class ExpenseTracker {
 
     static void addExpense() {
 
-        if (expenseCount < maxExpenses) {
+        input.nextLine();
 
-            input.nextLine();
+        System.out.print("Enter expense title: ");
+        String title = input.nextLine();
 
-            System.out.print("Enter expense title: ");
-            titles[expenseCount] = input.nextLine();
+        System.out.print("Enter amount: ");
+        double amount = input.nextDouble();
 
-            System.out.print("Enter amount: ");
-            amounts[expenseCount] = input.nextDouble();
+        input.nextLine();
 
-            input.nextLine();
+        System.out.print("Enter category: ");
+        String category = input.nextLine();
 
-            System.out.print("Enter category: ");
-            categories[expenseCount] = input.nextLine();
+        System.out.print("Enter date: ");
+        String date = input.nextLine();
 
-            System.out.print("Enter date: ");
-            dates[expenseCount] = input.nextLine();
+        // Create Expense object
+        Expense expense = new Expense(
+            title,
+            amount,
+            category,
+            date
+        );
 
-            expenseCount++;
+        // Add object to ArrayList
+        expenses.add(expense);
 
-            System.out.println();
-            System.out.println("Expense added successfully!");
-
-        }
-
-        else {
-
-            System.out.println();
-            System.out.println("Expense storage is full!");
-
-        }
+        System.out.println();
+        System.out.println("Expense added successfully!");
     }
 
 
@@ -146,7 +140,7 @@ public class ExpenseTracker {
 
     static void viewExpenses() {
 
-        if (expenseCount == 0) {
+        if (expenses.isEmpty()) {
 
             System.out.println();
             System.out.println("No expenses found.");
@@ -158,17 +152,33 @@ public class ExpenseTracker {
             System.out.println();
             System.out.println("========== ALL EXPENSES ==========");
 
-            for (int i = 0; i < expenseCount; i++) {
+            for (int i = 0; i < expenses.size(); i++) {
+
+                Expense expense = expenses.get(i);
 
                 System.out.println();
+
                 System.out.println("Expense " + (i + 1));
 
-                System.out.println("Title    : " + titles[i]);
-                System.out.println("Amount   : Rs." + amounts[i]);
-                System.out.println("Category : " + categories[i]);
-                System.out.println("Date     : " + dates[i]);
+                System.out.println(
+                    "Title    : " + expense.getTitle()
+                );
 
-                System.out.println("----------------------------------");
+                System.out.println(
+                    "Amount   : Rs." + expense.getAmount()
+                );
+
+                System.out.println(
+                    "Category : " + expense.getCategory()
+                );
+
+                System.out.println(
+                    "Date     : " + expense.getDate()
+                );
+
+                System.out.println(
+                    "----------------------------------"
+                );
             }
         }
     }
@@ -180,50 +190,60 @@ public class ExpenseTracker {
 
     static void modifyExpense() {
 
-        if (expenseCount == 0) {
+        if (expenses.isEmpty()) {
 
             System.out.println();
             System.out.println("No expenses found.");
+
+            return;
+        }
+
+        System.out.print(
+            "Enter expense number to modify: "
+        );
+
+        int expenseNumber = input.nextInt();
+
+        int index = expenseNumber - 1;
+
+        if (index >= 0 && index < expenses.size()) {
+
+            Expense expense = expenses.get(index);
+
+            input.nextLine();
+
+            System.out.print("Enter new title: ");
+            String title = input.nextLine();
+
+            System.out.print("Enter new amount: ");
+            double amount = input.nextDouble();
+
+            input.nextLine();
+
+            System.out.print("Enter new category: ");
+            String category = input.nextLine();
+
+            System.out.print("Enter new date: ");
+            String date = input.nextLine();
+
+            expense.setTitle(title);
+            expense.setAmount(amount);
+            expense.setCategory(category);
+            expense.setDate(date);
+
+            System.out.println();
+            System.out.println(
+                "Expense modified successfully!"
+            );
 
         }
 
         else {
 
-            System.out.print("Enter expense number to modify: ");
-
-            int expenseNumber = input.nextInt();
-
-            int index = expenseNumber - 1;
-
-            if (index >= 0 && index < expenseCount) {
-
-                input.nextLine();
-
-                System.out.print("Enter new title: ");
-                titles[index] = input.nextLine();
-
-                System.out.print("Enter new amount: ");
-                amounts[index] = input.nextDouble();
-
-                input.nextLine();
-
-                System.out.print("Enter new category: ");
-                categories[index] = input.nextLine();
-
-                System.out.print("Enter new date: ");
-                dates[index] = input.nextLine();
-
-                System.out.println();
-                System.out.println("Expense modified successfully!");
-
-            }
-
-            else {
-
-                System.out.println();
-                System.out.println("Invalid expense number!");
-
-            }
+            System.out.println();
+            System.out.println(
+                "Invalid expense number!"
+            );
         }
     }
 
@@ -234,47 +254,39 @@ public class ExpenseTracker {
 
     static void deleteExpense() {
 
-        if (expenseCount == 0) {
+        if (expenses.isEmpty()) {
 
             System.out.println();
             System.out.println("No expenses found.");
+
+            return;
+        }
+
+        System.out.print(
+            "Enter expense number to delete: "
+        );
+
+        int expenseNumber = input.nextInt();
+
+        int index = expenseNumber - 1;
+
+        if (index >= 0 && index < expenses.size()) {
+
+            expenses.remove(index);
+
+            System.out.println();
+            System.out.println(
+                "Expense deleted successfully!"
+            );
 
         }
 
         else {
 
-            System.out.print("Enter expense number to delete: ");
-
-            int expenseNumber = input.nextInt();
-
-            int index = expenseNumber - 1;
-
-            if (index >= 0 && index < expenseCount) {
-
-                for (int i = index; i < expenseCount - 1; i++) {
-
-                    titles[i] = titles[i + 1];
-
-                    amounts[i] = amounts[i + 1];
-
-                    categories[i] = categories[i + 1];
-
-                    dates[i] = dates[i + 1];
-                }
-
-                expenseCount--;
-
-                System.out.println();
-                System.out.println("Expense deleted successfully!");
-
-            }
-
-            else {
-
-                System.out.println();
-                System.out.println("Invalid expense number!");
-
-            }
+            System.out.println();
+            System.out.println(
+                "Invalid expense number!"
+            );
         }
     }
 
@@ -287,15 +299,16 @@ public class ExpenseTracker {
 
         double total = 0;
 
-        for (int i = 0; i < expenseCount; i++) {
+        for (int i = 0; i < expenses.size(); i++) {
 
-            total = total + amounts[i];
-
+            total = total + expenses.get(i).getAmount();
         }
 
         System.out.println();
         System.out.println("==============================");
-        System.out.println("Total Expenses: Rs." + total);
+        System.out.println(
+            "Total Expenses: Rs." + total
+        );
         System.out.println("==============================");
     }
 }
