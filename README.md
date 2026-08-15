@@ -17,6 +17,8 @@ Users can:
 - Calculate total expenses
 - Exit the application
 
+The application also handles invalid user input using Java exception handling.
+
 ## 🛠️ Technologies Used
 
 - Java
@@ -53,7 +55,7 @@ Example:
 Enter expense title: Book
 Enter amount: 300
 Enter category: Study
-Enter date: 14/08/2026
+Enter date: 15/08/2026
 
 Expense added successfully!
 ```
@@ -71,14 +73,7 @@ Expense 1
 Title    : Book
 Amount   : Rs.300.0
 Category : Study
-Date     : 14/08/2026
-----------------------------------
-
-Expense 2
-Title    : Lunch
-Amount   : Rs.150.0
-Category : Food
-Date     : 14/08/2026
+Date     : 15/08/2026
 ----------------------------------
 ```
 
@@ -111,9 +106,37 @@ Total Expenses: Rs.450.0
 
 The user can exit the application by selecting option `6`.
 
+### 7. Input Validation
+
+The application handles invalid numeric input using exception handling.
+
+Example:
+
+```text
+Enter your choice: abc
+
+Invalid input! Please enter a number.
+```
+
+Invalid amounts are also handled:
+
+```text
+Enter amount: abc
+
+Invalid amount! Please enter a number.
+```
+
+Negative amounts are rejected:
+
+```text
+Enter amount: -300
+
+Amount cannot be negative.
+```
+
 ## 🎯 Current Version
 
-### Version 4
+### Version 5
 
 Current version supports:
 
@@ -131,6 +154,8 @@ Current version supports:
 - [x] Encapsulation
 - [x] Getters and Setters
 - [x] `ArrayList`
+- [x] Exception handling
+- [x] Input validation
 
 ## 📚 Java Concepts Used
 
@@ -152,54 +177,63 @@ This project currently uses:
 - `private` fields
 - Getters and Setters
 - `ArrayList`
-- ArrayList methods
 - `Scanner`
+- `try`
+- `catch`
+- `InputMismatchException`
 - Boolean values
 - User input
 - String handling
+- Input validation
 
 ## 🧱 Class Structure
 
-The project uses two Java classes:
+The project uses two Java classes.
 
-```text
-Expense.java
-│
-└── Represents one expense
-    ├── title
-    ├── amount
-    ├── category
-    └── date
-```
+### Expense.java
 
-```text
-ExpenseTracker.java
-│
-├── Main application
-├── Menu
-├── Add Expense
-├── View Expenses
-├── Modify Expense
-├── Delete Expense
-└── Calculate Total
-```
-
-### Expense Object
-
-Each expense is represented as an `Expense` object.
-
-Example:
+Represents one expense.
 
 ```text
 Expense
 │
-├── Title    : Book
-├── Amount   : Rs.300
-├── Category : Study
-└── Date     : 14/08/2026
+├── title
+├── amount
+├── category
+└── date
 ```
 
-Multiple `Expense` objects are stored using an `ArrayList`.
+### ExpenseTracker.java
+
+Controls the application.
+
+```text
+ExpenseTracker
+│
+├── main()
+├── showMenu()
+├── addExpense()
+├── viewExpenses()
+├── modifyExpense()
+├── deleteExpense()
+└── calculateTotal()
+```
+
+## 🛡️ Exception Handling
+
+Version 5 introduces exception handling to prevent the application from crashing when the user enters invalid numeric input.
+
+Example:
+
+```java
+try {
+    choice = input.nextInt();
+}
+catch (InputMismatchException e) {
+    System.out.println("Invalid input!");
+    input.nextLine();
+}
+```
 
 ## ▶️ How to Run
 
@@ -222,8 +256,6 @@ src/
 ```
 
 ### Step 4: Compile
-
-Open the terminal and run:
 
 ```bash
 cd src

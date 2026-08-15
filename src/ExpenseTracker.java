@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ExpenseTracker {
@@ -20,53 +21,66 @@ public class ExpenseTracker {
 
             showMenu();
 
-            System.out.print("Enter your choice: ");
-            choice = input.nextInt();
+            try {
 
-            if (choice == 1) {
+                System.out.print("Enter your choice: ");
+                choice = input.nextInt();
 
-                addExpense();
+                if (choice == 1) {
+
+                    addExpense();
+
+                }
+
+                else if (choice == 2) {
+
+                    viewExpenses();
+
+                }
+
+                else if (choice == 3) {
+
+                    modifyExpense();
+
+                }
+
+                else if (choice == 4) {
+
+                    deleteExpense();
+
+                }
+
+                else if (choice == 5) {
+
+                    calculateTotal();
+
+                }
+
+                else if (choice == 6) {
+
+                    System.out.println();
+                    System.out.println(
+                        "Thank you for using Expense Tracker!"
+                    );
+
+                }
+
+                else {
+
+                    System.out.println();
+                    System.out.println("Invalid choice!");
+                }
 
             }
 
-            else if (choice == 2) {
-
-                viewExpenses();
-
-            }
-
-            else if (choice == 3) {
-
-                modifyExpense();
-
-            }
-
-            else if (choice == 4) {
-
-                deleteExpense();
-
-            }
-
-            else if (choice == 5) {
-
-                calculateTotal();
-
-            }
-
-            else if (choice == 6) {
+            catch (InputMismatchException e) {
 
                 System.out.println();
                 System.out.println(
-                    "Thank you for using Expense Tracker!"
+                    "Invalid input! Please enter a number."
                 );
 
-            }
-
-            else {
-
-                System.out.println();
-                System.out.println("Invalid choice!");
-
+                input.nextLine();
             }
         }
 
@@ -107,8 +121,39 @@ public class ExpenseTracker {
         System.out.print("Enter expense title: ");
         String title = input.nextLine();
 
-        System.out.print("Enter amount: ");
-        double amount = input.nextDouble();
+        double amount;
+
+        while (true) {
+
+            try {
+
+                System.out.print("Enter amount: ");
+                amount = input.nextDouble();
+
+                if (amount < 0) {
+
+                    System.out.println(
+                        "Amount cannot be negative."
+                    );
+
+                }
+
+                else {
+
+                    break;
+                }
+
+            }
+
+            catch (InputMismatchException e) {
+
+                System.out.println(
+                    "Invalid amount! Please enter a number."
+                );
+
+                input.nextLine();
+            }
+        }
 
         input.nextLine();
 
@@ -118,7 +163,6 @@ public class ExpenseTracker {
         System.out.print("Enter date: ");
         String date = input.nextLine();
 
-        // Create Expense object
         Expense expense = new Expense(
             title,
             amount,
@@ -126,7 +170,6 @@ public class ExpenseTracker {
             date
         );
 
-        // Add object to ArrayList
         expenses.add(expense);
 
         System.out.println();
@@ -145,41 +188,38 @@ public class ExpenseTracker {
             System.out.println();
             System.out.println("No expenses found.");
 
+            return;
         }
 
-        else {
+        System.out.println();
+        System.out.println("========== ALL EXPENSES ==========");
+
+        for (int i = 0; i < expenses.size(); i++) {
+
+            Expense expense = expenses.get(i);
 
             System.out.println();
-            System.out.println("========== ALL EXPENSES ==========");
+            System.out.println("Expense " + (i + 1));
 
-            for (int i = 0; i < expenses.size(); i++) {
+            System.out.println(
+                "Title    : " + expense.getTitle()
+            );
 
-                Expense expense = expenses.get(i);
+            System.out.println(
+                "Amount   : Rs." + expense.getAmount()
+            );
 
-                System.out.println();
+            System.out.println(
+                "Category : " + expense.getCategory()
+            );
 
-                System.out.println("Expense " + (i + 1));
+            System.out.println(
+                "Date     : " + expense.getDate()
+            );
 
-                System.out.println(
-                    "Title    : " + expense.getTitle()
-                );
-
-                System.out.println(
-                    "Amount   : Rs." + expense.getAmount()
-                );
-
-                System.out.println(
-                    "Category : " + expense.getCategory()
-                );
-
-                System.out.println(
-                    "Date     : " + expense.getDate()
-                );
-
-                System.out.println(
-                    "----------------------------------"
-                );
-            }
+            System.out.println(
+                "----------------------------------"
+            );
         }
     }
 
@@ -198,11 +238,31 @@ public class ExpenseTracker {
             return;
         }
 
-        System.out.print(
-            "Enter expense number to modify: "
-        );
+        int expenseNumber;
 
-        int expenseNumber = input.nextInt();
+        while (true) {
+
+            try {
+
+                System.out.print(
+                    "Enter expense number to modify: "
+                );
+
+                expenseNumber = input.nextInt();
+
+                break;
+
+            }
+
+            catch (InputMismatchException e) {
+
+                System.out.println(
+                    "Invalid input! Please enter a number."
+                );
+
+                input.nextLine();
+            }
+        }
 
         int index = expenseNumber - 1;
 
@@ -215,8 +275,39 @@ public class ExpenseTracker {
             System.out.print("Enter new title: ");
             String title = input.nextLine();
 
-            System.out.print("Enter new amount: ");
-            double amount = input.nextDouble();
+            double amount;
+
+            while (true) {
+
+                try {
+
+                    System.out.print("Enter new amount: ");
+                    amount = input.nextDouble();
+
+                    if (amount < 0) {
+
+                        System.out.println(
+                            "Amount cannot be negative."
+                        );
+
+                    }
+
+                    else {
+
+                        break;
+                    }
+
+                }
+
+                catch (InputMismatchException e) {
+
+                    System.out.println(
+                        "Invalid amount! Please enter a number."
+                    );
+
+                    input.nextLine();
+                }
+            }
 
             input.nextLine();
 
@@ -262,11 +353,31 @@ public class ExpenseTracker {
             return;
         }
 
-        System.out.print(
-            "Enter expense number to delete: "
-        );
+        int expenseNumber;
 
-        int expenseNumber = input.nextInt();
+        while (true) {
+
+            try {
+
+                System.out.print(
+                    "Enter expense number to delete: "
+                );
+
+                expenseNumber = input.nextInt();
+
+                break;
+
+            }
+
+            catch (InputMismatchException e) {
+
+                System.out.println(
+                    "Invalid input! Please enter a number."
+                );
+
+                input.nextLine();
+            }
+        }
 
         int index = expenseNumber - 1;
 
