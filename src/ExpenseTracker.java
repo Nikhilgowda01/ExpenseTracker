@@ -1,3 +1,9 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -8,12 +14,16 @@ public class ExpenseTracker {
 
     static ArrayList<Expense> expenses = new ArrayList<>();
 
+    static String fileName = "data/expenses.txt";
+
 
     // =========================
     // MAIN METHOD
     // =========================
 
     public static void main(String[] args) {
+
+        loadExpenses();
 
         int choice = 0;
 
@@ -172,6 +182,8 @@ public class ExpenseTracker {
 
         expenses.add(expense);
 
+        saveExpenses();
+
         System.out.println();
         System.out.println("Expense added successfully!");
     }
@@ -322,6 +334,8 @@ public class ExpenseTracker {
             expense.setCategory(category);
             expense.setDate(date);
 
+            saveExpenses();
+
             System.out.println();
             System.out.println(
                 "Expense modified successfully!"
@@ -385,6 +399,8 @@ public class ExpenseTracker {
 
             expenses.remove(index);
 
+            saveExpenses();
+
             System.out.println();
             System.out.println(
                 "Expense deleted successfully!"
@@ -421,5 +437,105 @@ public class ExpenseTracker {
             "Total Expenses: Rs." + total
         );
         System.out.println("==============================");
+    }
+
+
+    // =========================
+    // SAVE EXPENSES
+    // =========================
+
+    static void saveExpenses() {
+
+        try {
+
+            BufferedWriter writer =
+                new BufferedWriter(
+                    new FileWriter(fileName)
+                );
+
+            for (Expense expense : expenses) {
+
+                writer.write(
+                    expense.getTitle() + "|" +
+                    expense.getAmount() + "|" +
+                    expense.getCategory() + "|" +
+                    expense.getDate()
+                );
+
+                writer.newLine();
+            }
+
+            writer.close();
+
+        }
+
+        catch (IOException e) {
+
+            System.out.println(
+                "Error while saving expenses."
+            );
+        }
+    }
+
+
+    // =========================
+    // LOAD EXPENSES
+    // =========================
+
+    static void loadExpenses() {
+
+        try {
+
+            BufferedReader reader =
+                new BufferedReader(
+                    new FileReader(fileName)
+                );
+
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+
+                String[] data = line.split("\\|");
+
+                if (data.length == 4) {
+
+                    String title = data[0];
+
+                    double amount =
+                        Double.parseDouble(data[1]);
+
+                    String category = data[2];
+
+                    String date = data[3];
+
+                    Expense expense = new Expense(
+                        title,
+                        amount,
+                        category,
+                        date
+                    );
+
+                    expenses.add(expense);
+                }
+            }
+
+            reader.close();
+
+        }
+
+        catch (IOException e) {
+
+            // File does not exist yet.
+            // It will be created when the first
+            // expense is added.
+
+        }
+
+        catch (NumberFormatException e) {
+
+            System.out.println(
+                "Some expense data could not be loaded."
+            );
+        }
     }
 }

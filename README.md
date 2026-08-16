@@ -1,32 +1,28 @@
 # Expense Tracker 💰
 
-A simple **Java console-based Expense Tracker** project.
+A simple Java console application for managing personal expenses.
 
-This project is being developed step-by-step while learning Java programming and applying each new concept to a practical project.
+I started this project while learning Java and have been improving it step by step as I learn new concepts. The current version can store expenses in a file, so the data is not lost when the program is closed.
 
-## 📌 Project Overview
+## What it can do
 
-The Expense Tracker allows users to manage multiple expenses through a simple console menu.
-
-Users can:
-
-- Add expenses
+- Add an expense
 - View all expenses
 - Modify an expense
 - Delete an expense
 - Calculate total expenses
-- Exit the application
+- Save expenses to a file
+- Load saved expenses when the program starts
+- Handle invalid user input
 
-The application also handles invalid user input using Java exception handling.
-
-## 🛠️ Technologies Used
+## Technologies
 
 - Java
 - VS Code
 - Git
 - GitHub
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 ExpenseTracker/
@@ -35,240 +31,39 @@ ExpenseTracker/
 │   ├── Expense.java
 │   └── ExpenseTracker.java
 │
+├── data/
+│   └── expenses.txt
+│
 └── README.md
 ```
 
-## ✨ Features
+## How it works
 
-### 1. Add Expense
-
-The user can enter:
-
-- Expense title
-- Amount
-- Category
-- Date
-
-Example:
+Each expense contains four pieces of information:
 
 ```text
-Enter expense title: Book
-Enter amount: 300
-Enter category: Study
-Enter date: 15/08/2026
-
-Expense added successfully!
+Title
+Amount
+Category
+Date
 ```
 
-### 2. View All Expenses
-
-The application displays all stored expenses.
-
-Example:
+For example:
 
 ```text
-========== ALL EXPENSES ==========
-
-Expense 1
-Title    : Book
-Amount   : Rs.300.0
-Category : Study
-Date     : 15/08/2026
-----------------------------------
+Title    : Java Book
+Amount   : Rs.500
+Category : Education
+Date     : 16/08/2026
 ```
 
-### 3. Modify Expense
+The expenses are stored in an `ArrayList` while the program is running.
 
-The user can select an expense number and modify its:
+When an expense is added, modified, or deleted, the program saves the current data to `expenses.txt`.
 
-- Title
-- Amount
-- Category
-- Date
+When the program starts again, it reads the file and loads the saved expenses.
 
-### 4. Delete Expense
-
-The user can select an expense number and delete it.
-
-### 5. Total Expenses
-
-The application calculates and displays the total amount of all stored expenses.
-
-Example:
-
-```text
-==============================
-Total Expenses: Rs.450.0
-==============================
-```
-
-### 6. Exit
-
-The user can exit the application by selecting option `6`.
-
-### 7. Input Validation
-
-The application handles invalid numeric input using exception handling.
-
-Example:
-
-```text
-Enter your choice: abc
-
-Invalid input! Please enter a number.
-```
-
-Invalid amounts are also handled:
-
-```text
-Enter amount: abc
-
-Invalid amount! Please enter a number.
-```
-
-Negative amounts are rejected:
-
-```text
-Enter amount: -300
-
-Amount cannot be negative.
-```
-
-## 🎯 Current Version
-
-### Version 5
-
-Current version supports:
-
-- [x] Add multiple expenses
-- [x] View all expenses
-- [x] Modify expense
-- [x] Delete expense
-- [x] Calculate total expenses
-- [x] Repeating menu using `while` loop
-- [x] `for` loop
-- [x] Methods
-- [x] Classes
-- [x] Objects
-- [x] Constructor
-- [x] Encapsulation
-- [x] Getters and Setters
-- [x] `ArrayList`
-- [x] Exception handling
-- [x] Input validation
-
-## 📚 Java Concepts Used
-
-This project currently uses:
-
-- Variables
-- Data Types
-- Operators
-- `if`
-- `else if`
-- `else`
-- `while` loop
-- `for` loop
-- Methods
-- Classes
-- Objects
-- Constructors
-- Encapsulation
-- `private` fields
-- Getters and Setters
-- `ArrayList`
-- `Scanner`
-- `try`
-- `catch`
-- `InputMismatchException`
-- Boolean values
-- User input
-- String handling
-- Input validation
-
-## 🧱 Class Structure
-
-The project uses two Java classes.
-
-### Expense.java
-
-Represents one expense.
-
-```text
-Expense
-│
-├── title
-├── amount
-├── category
-└── date
-```
-
-### ExpenseTracker.java
-
-Controls the application.
-
-```text
-ExpenseTracker
-│
-├── main()
-├── showMenu()
-├── addExpense()
-├── viewExpenses()
-├── modifyExpense()
-├── deleteExpense()
-└── calculateTotal()
-```
-
-## 🛡️ Exception Handling
-
-Version 5 introduces exception handling to prevent the application from crashing when the user enters invalid numeric input.
-
-Example:
-
-```java
-try {
-    choice = input.nextInt();
-}
-catch (InputMismatchException e) {
-    System.out.println("Invalid input!");
-    input.nextLine();
-}
-```
-
-## ▶️ How to Run
-
-### Step 1: Clone the Repository
-
-```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
-```
-
-### Step 2: Open the Project
-
-Open the project in VS Code.
-
-### Step 3: Open the Source Folder
-
-```text
-src/
-├── Expense.java
-└── ExpenseTracker.java
-```
-
-### Step 4: Compile
-
-```bash
-cd src
-javac Expense.java ExpenseTracker.java
-```
-
-### Step 5: Run
-
-```bash
-java ExpenseTracker
-```
-
-## 🖥️ Application Menu
+## Menu
 
 ```text
 ==============================
@@ -281,16 +76,76 @@ java ExpenseTracker
 4. Delete Expense
 5. Total Expenses
 6. Exit
-
-Enter your choice:
 ```
 
-## 👨‍💻 Author
+## File Storage
+
+The application currently uses a simple text file for storage.
+
+Example:
+
+```text
+Book|300.0|Study|16/08/2026
+Lunch|150.0|Food|16/08/2026
+Bus|50.0|Travel|16/08/2026
+```
+
+The `|` symbol is used to separate the different pieces of information.
+
+## Java Concepts Used
+
+Through the different versions of this project, I have used:
+
+- Variables and data types
+- Operators
+- Conditional statements
+- `while` and `for` loops
+- Arrays
+- Methods
+- Classes and objects
+- Constructors
+- Encapsulation
+- Getters and setters
+- `ArrayList`
+- `Scanner`
+- Exception handling
+- Input validation
+- File handling
+- `FileReader`
+- `FileWriter`
+- `BufferedReader`
+- `BufferedWriter`
+
+## How to Run
+
+Clone the repository:
+
+```bash
+git clone YOUR_GITHUB_REPOSITORY_URL
+```
+
+Open the project in VS Code.
+
+Compile the Java files:
+
+```bash
+javac src\Expense.java src\ExpenseTracker.java
+```
+
+Run the application:
+
+```bash
+java -cp src ExpenseTracker
+```
+
+## Current Version
+
+**Version 6**
+
+The main improvement in this version is file storage. Expenses are now saved to `expenses.txt` and loaded again when the application starts.
+
+## Author
 
 **Nikhil**
 
-This project is created as part of my Java learning journey and is being developed step-by-step as I learn new Java concepts.
-
-## 📄 License
-
-This project is for learning and educational purposes.
+This project is part of my Java learning journey. I am building and improving it as I learn new Java concepts.
