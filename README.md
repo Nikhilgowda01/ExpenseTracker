@@ -1,23 +1,26 @@
 # Expense Tracker 💰
 
-A simple Java console application for managing personal expenses.
+A console-based Expense Tracker built using Java.
 
-I started this project while learning Java and have been improving it step by step as I learn new concepts. The current version can store expenses in a file, so the data is not lost when the program is closed.
+I started this project while learning Java and improved it step by step. In this version, the application is connected to MySQL using JDBC, so expenses are stored permanently in a database.
 
-## What it can do
+## Features
 
-- Add an expense
-- View all expenses
-- Modify an expense
-- Delete an expense
-- Calculate total expenses
-- Save expenses to a file
-- Load saved expenses when the program starts
-- Handle invalid user input
+- Add Expense
+- View Expenses
+- Modify Expense
+- Delete Expense
+- Calculate Total Expense
+- Exit
+- Store expenses in MySQL
+- Basic input validation
 
-## Technologies
+## Technologies Used
 
 - Java
+- JDBC
+- MySQL
+- Maven
 - VS Code
 - Git
 - GitHub
@@ -28,124 +31,224 @@ I started this project while learning Java and have been improving it step by st
 ExpenseTracker/
 │
 ├── src/
-│   ├── Expense.java
-│   └── ExpenseTracker.java
+│   └── main/
+│       └── java/
+│           ├── DatabaseConnection.java
+│           ├── Expense.java
+│           ├── ExpenseDAO.java
+│           └── ExpenseTracker.java
 │
-├── data/
-│   └── expenses.txt
-│
+├── .gitignore
+├── pom.xml
 └── README.md
 ```
 
-## How it works
+## How It Works
 
-Each expense contains four pieces of information:
+The application follows this flow:
 
 ```text
-Title
-Amount
-Category
-Date
+User
+ ↓
+ExpenseTracker
+ ↓
+ExpenseDAO
+ ↓
+JDBC
+ ↓
+MySQL
 ```
 
-For example:
+### Expense.java
+
+Represents an expense and stores its details:
+
+- ID
+- Title
+- Amount
+- Category
+- Date
+
+### DatabaseConnection.java
+
+Creates the connection between Java and MySQL.
+
+### ExpenseDAO.java
+
+Handles database operations:
+
+- INSERT
+- SELECT
+- UPDATE
+- DELETE
+- SUM
+
+### ExpenseTracker.java
+
+Handles:
+
+- Menu
+- User input
+- Program flow
+- Displaying results
+
+## Database
+
+The project uses a MySQL database called:
 
 ```text
-Title    : Java Book
-Amount   : Rs.500
-Category : Education
-Date     : 16/08/2026
+expense_tracker
 ```
 
-The expenses are stored in an `ArrayList` while the program is running.
-
-When an expense is added, modified, or deleted, the program saves the current data to `expenses.txt`.
-
-When the program starts again, it reads the file and loads the saved expenses.
-
-## Menu
+The main table is:
 
 ```text
-==============================
-       EXPENSE TRACKER
-==============================
+expenses
+```
 
+Table structure:
+
+```text
+expenses
+├── id
+├── title
+├── amount
+├── category
+└── expense_date
+```
+
+## Application Menu
+
+```text
+================================
+        EXPENSE TRACKER
+================================
 1. Add Expense
-2. View All Expenses
+2. View Expenses
 3. Modify Expense
 4. Delete Expense
-5. Total Expenses
+5. Total Expense
 6. Exit
+================================
+Enter your choice:
 ```
 
-## File Storage
+## Example
 
-The application currently uses a simple text file for storage.
-
-Example:
+Adding an expense:
 
 ```text
-Book|300.0|Study|16/08/2026
-Lunch|150.0|Food|16/08/2026
-Bus|50.0|Travel|16/08/2026
+Enter your choice: 1
+
+---------- ADD EXPENSE ----------
+Enter expense title: Java Book
+Enter amount: 500
+Enter category: Education
+Enter date: 18/08/2026
+
+Expense added successfully!
 ```
 
-The `|` symbol is used to separate the different pieces of information.
+Viewing expenses:
+
+```text
+---------- ALL EXPENSES ----------
+
+ID       : 1
+Title    : Java Book
+Amount   : Rs.500.0
+Category : Education
+Date     : 18/08/2026
+--------------------------------
+```
+
+## Database Setup
+
+Create the database:
+
+```sql
+CREATE DATABASE expense_tracker;
+```
+
+Select the database:
+
+```sql
+USE expense_tracker;
+```
+
+Create the table:
+
+```sql
+CREATE TABLE expenses (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(100) NOT NULL,
+    amount DOUBLE NOT NULL,
+    category VARCHAR(50) NOT NULL,
+    expense_date VARCHAR(20) NOT NULL
+);
+```
+
+## Running the Project
+
+Make sure Java, Maven and MySQL are installed.
+
+From the project directory:
+
+```bash
+mvn clean compile
+```
+
+Then run:
+
+```bash
+mvn exec:java
+```
+
+## JDBC
+
+This project uses JDBC to connect Java with MySQL.
+
+The main JDBC classes used are:
+
+- Connection
+- DriverManager
+- PreparedStatement
+- ResultSet
 
 ## Java Concepts Used
 
-Through the different versions of this project, I have used:
+This project helped me practice:
 
-- Variables and data types
+- Variables
+- Data types
 - Operators
 - Conditional statements
-- `while` and `for` loops
-- Arrays
+- Loops
 - Methods
 - Classes and objects
 - Constructors
 - Encapsulation
 - Getters and setters
-- `ArrayList`
-- `Scanner`
+- ArrayList
+- Scanner
 - Exception handling
 - Input validation
-- File handling
-- `FileReader`
-- `FileWriter`
-- `BufferedReader`
-- `BufferedWriter`
-
-## How to Run
-
-Clone the repository:
-
-```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
-```
-
-Open the project in VS Code.
-
-Compile the Java files:
-
-```bash
-javac src\Expense.java src\ExpenseTracker.java
-```
-
-Run the application:
-
-```bash
-java -cp src ExpenseTracker
-```
+- JDBC
+- SQL
+- MySQL
+- Maven
+- DAO pattern
 
 ## Current Version
 
-**Version 6**
+### Version 7
 
-The main improvement in this version is file storage. Expenses are now saved to `expenses.txt` and loaded again when the application starts.
+The application now uses MySQL for permanent expense storage through JDBC.
+
+Previously, expenses were stored locally. Now the data is stored in a real database and remains available after the application is closed.
 
 ## Author
 
 **Nikhil**
 
-This project is part of my Java learning journey. I am building and improving it as I learn new Java concepts.
+This project is part of my Java learning journey. I am building it step by step while learning new Java concepts. 
